@@ -1,0 +1,76 @@
+body{
+	padding: 50px 50px;
+	display:  flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	width: 100vw;
+}
+.formdesign input{
+	width: 50%;
+	padding: 12px 20px;
+	border: 2px solid greenyellow;
+	margin:  14px;
+	border-radius:  4px;
+	font-size: 15px;
+}
+.formdesign{
+	font-size:  20px;
+}
+.formerror{
+	color: red;
+	font-size: 20px;
+}
+.but{
+	border-radius: 9px;
+	width: 150px;
+	height: 50px;
+	font-size: 25px;
+	margin: 22px 20px;
+}
+.formdesign input: focus{
+	outline: 0;
+	border-color: black;
+}
+
+.formdesign.success.input. {
+	border-color: green;
+
+
+}
+.formdesign.error input{
+	border-color: red;
+
+}
+.formdesign{
+	margin-bottom: 20px;
+	position: relative;
+}
+.formdesign label{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.formdesign i {
+	position: absolute;
+	right: 12px;
+	top: 38px;
+	visibility: hidden;
+}
+.formdesign small{
+	color: red;
+	visibility: hidden;
+	bottom: 0;
+	left: 0;
+	
+}
+.formdesign.success i.fas fa-check-circle{
+	color: green;
+	visibility: visible;
+}
+.formdesign.error i.fas fa-exclamation-circle{
+	color: red;
+	visibility: visible;
+}
+
+

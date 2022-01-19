@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="newstyle.css">
+<title>Javascript form validation</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style type="text/css">
+body{
+	background-image:url(https://sarthak-arora.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0c17b8a3-5e91-40b3-b3c5-7fad9a7f4b68%2FUntitled.png?table=block&id=49859998-94f7-412e-9310-d28538707bcb&spaceId=dedb7292-68d7-4a39-82a3-e5f14f225d81&width=2000&userId=&cache=v2);
+	background-size: cover;
+	background-attachment: fixed;
+
+}
+</style>
+</head>
+<body>
+<font color="white">
+<center><h1><b><u>THE FORM FOR THE BITS AUGSD WEBSITE</u></b></h1></center>
+<form action ="/myaction.php" name="myForm" onsubmit="return validateForm()"method="post">
+<form class='form' id='form'>
+<div class="formdesign" id="name">
+<label>Name:</label> <input type="text" name=" " placeholder="Enter your full name" autocompete="off"><span class="formerror"><b></b></span>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small>	
+</div>
+<div class="formdesign" id="pwd">
+<label>Password: </label><input type="password" name=" " placeholder="Enter your bits email id password" autocompete="off"><span class="formerror"><b></b></span>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small>
+</div>
+<div class="formdesign" id="phone">
+<label>Phone:</label> <input type="number" name=" " placeholder="Enter your registered mobile number"><span class="formerror" autocompete="off"><b></b></span>	
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small>
+</div>
+<div class="formdesign" id="gender">
+<label>Gender:</label><input type="radio" name="gender">Male<input type="radio" name="gender">Female<input type="radio" name="gender">Others<span class="formerror"><b></b></span>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small></center>
+</div>
+<div class="formdesign" id="email">
+<label>E Mail:</label> <input type="email" name=" " placeholder="Enter your bits email id" autocompete="off"><span class="formerror"><b></b></span>	
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small>
+</div>
+<div class="formdesign" id="s_ID">
+<label>BITS ID: </label><input type="text" name=" " placeholder="Enter your student ID" autocompete="off"><span class="formerror"><b></b></span>
+<i class="fas fa-check-circle"></i>
+<i class="fas fa-exclamation-circle"></i><small>ERROR MESSAGE</small>
+</div>
+<a href="success.html"><input class="but" type="submit" value="SUBMIT"></a>
+</form>
+</font>
+</body>
+<script type="text/javascript">
+
+const form=document.getElementByID('form')
+const name=document.getElementByID('name')
+const email=document.getElementByID('email')
+const phone=document.getElementByID('phone')
+const bits_id=document.getElementByID('s_ID')
+const gender=document.getElementByID('gender')
+const password=document.getElementByID('password')
+form.addEventListner('submit',(event)=>{
+	event.preventDefault()
+	validateForm();
+})
+const isEmail =(email)=>{
+	var atSymbol = email.indexOf("@")
+	var dot=email.lastIndexOf(".")
+	if (atSymbol < 1) return false;
+	else if(dot<= atSymbol+3) return false;
+	else if(dot != email.length-2 || dot != email.length-1)return false;
+	else if(email.indexOf("F")!=0) return false;
+	return true;
+	
+}
+function seterror(input,errormsgs)
+{
+	const formdesign=input.parentElement;
+	const small= formdesign.querySelector('small')
+	formdesign.className ="formdesign error";
+	small.innerText = errormsgs;
+}
+function setSuccessMsg(input)
+{
+	const formdesign=input.parentElement;
+	const small= formdesign.querySelector('small')
+	formdesign.className ="formdesign success";
+	
+}
+function validateForm(){
+const form=form.value.trim()
+const name=name.value.trim()
+const email=email.value.trim()
+const phone=phone.value.trim()
+const bits_id=s_ID.value.trim()
+const gender=gender.value.trim()
+	var returnval = true;
+	//performs validation and if the valiudation fails then the return value is false
+	//validating name
+	if (name.length<5){
+		seterror(name,"length of name is too short");
+		returnval = false;
+	}
+	else if (name.length==0){
+		seterror(name,"* Name can't be blank!")
+		returnval = false;
+	}
+	else{
+		setSuccessMsg(name);
+	}
+	if (email.length>30){
+		seterror(email,"*Email length is too long");
+		returnval = false;
+	}
+	else if(email = " "){
+			seterror(email,'email can not be blank')
+			returnval = false;
+	}
+	else if (!isEmail(email))
+		{seterror(email,"*please enter a valid BITS email ID");
+		returnval = false;
+	}
+	else{
+		setSuccessMsg(email);
+	}
+	if (phone=" "){
+		seterror(phone,"phone number can not be blank");
+		returnval = false;
+	}
+	else if (phone.length!=10){
+		seterror(phone,"* phone numbers can have only 10 digits!")
+		returnval = false;
+	}
+	else{
+		setSuccessMsg(phone);}
+	if (password=" "){
+		seterror(password,"password can not be blank");
+		returnval = false;
+	}
+	else if (password.length<8){
+		seterror(phone,"* password should have minimum 8 characters")
+		returnval = false;
+	}
+	else{
+		setSuccessMsg(password);}
+	if (bits_ID=" "){
+		seterror(bits_ID,"student ID number can not be blank");
+		returnval = false;
+	}
+	else if (bits_ID.length!=13){
+		seterror(bits_ID,"* student ID can have only 13 digits!")
+		returnval = false;
+	}
+	else{
+		setSuccessMsg(bits_ID);}
+
+ 	return returnval;
+ }
+accept=validateForm()
+if (accept="true")	
+
+</script>
+</html>
